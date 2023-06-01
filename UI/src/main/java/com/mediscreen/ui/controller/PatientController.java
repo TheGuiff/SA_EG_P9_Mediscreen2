@@ -1,16 +1,15 @@
 package com.mediscreen.ui.controller;
 
-import com.mediscreen.ui.beans.PatientBean;
+import com.mediscreen.ui.model.Patient;
 import com.mediscreen.ui.proxies.PatientServiceProxy;
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
-@Slf4j
 @RequestMapping("/mediscreen")
 public class PatientController {
 
@@ -22,19 +21,44 @@ public class PatientController {
 
     @RequestMapping("/")
     public String home (Model model) {
+        model.addAttribute("patientId", 1);
         return "home";
     }
 
     @RequestMapping("/list")
     public String patientList (Model model) {
-        List<PatientBean> patientBeanList = patientServiceProxy.listeDesPatients();
-        model.addAttribute("patients", patientBeanList);
+        List<Patient> patientList = patientServiceProxy.getAllPatient();
+        model.addAttribute("patients", patientList);
         return "patientList";
     }
 
-    @RequestMapping("/patient")
+    @GetMapping("/patient/{id}")
+    public String patientById (@PathVariable("id") Long id, Model model) {
+            Patient patient = patientServiceProxy.getPatient(id);
+            model.addAttribute("patient", patient);
+            return "patient";
+    }
+
+    @PostMapping("/patient/update/{id}")
+    public String updatePatient(@PathVariable("id") Long id, Patient patient, Model model) {
+        patientServiceProxy.updatePatient(id, patient);
+        List<Patient> patientList = patientServiceProxy.getAllPatient();
+        model.addAttribute("patients", patientList);
+        return "patientList";
+    }
+
+    @GetMapping("/patient/add")
     public String patientById (Model model) {
-        return "patient";
+        Patient patient = new Patient();
+        model.addAttribute("patient", patient);
+        return "patientAdd";
+    }
+    @PostMapping("/patient/validate")
+    public String addPatient(Patient patient, Model model) {
+        Patient patientAdded = patientServiceProxy.addPatient(patient);
+        List<Patient> patientList = patientServiceProxy.getAllPatient();
+        model.addAttribute("patients", patientList);
+        return "patientList";
     }
 
 }

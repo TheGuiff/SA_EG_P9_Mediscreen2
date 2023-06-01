@@ -9,9 +9,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="UI" />
         <module name="Patient-service" />
-        <module name="User-interface" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="User-interface" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

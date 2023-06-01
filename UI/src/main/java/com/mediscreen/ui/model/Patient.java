@@ -1,11 +1,11 @@
-package com.mediscreen.ui.beans;
+package com.mediscreen.ui.model;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class PatientBean {
+public class Patient {
 
     private Long patientId;
     private String firstname;

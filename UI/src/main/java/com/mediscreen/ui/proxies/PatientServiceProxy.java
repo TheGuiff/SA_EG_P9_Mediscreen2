@@ -1,18 +1,27 @@
 package com.mediscreen.ui.proxies;
 
-import com.mediscreen.ui.beans.PatientBean;
+import com.mediscreen.ui.model.Patient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.List;
 
-@FeignClient(name="mediscreenPatientService", url="localhost:8080")
+//@FeignClient(name="mediscreenPatientService", url="http://localhost:8080")
+@FeignClient(value="PatientServiceProxy", url="http://localhost:8080")
 public interface PatientServiceProxy {
 
-    @GetMapping(value="/patient/")
-    List<PatientBean> listeDesPatients();
+    @GetMapping("/patient/")
+    List<Patient> getAllPatient();
 
-    @GetMapping(value="Patient/{id}")
-    PatientBean patientById(@PathVariable("id") Long id);
+    @GetMapping("/patient/{id}")
+    Patient getPatient(@PathVariable("id") Long id);
+
+    @PutMapping("/patient/{id}")
+    Patient updatePatient(@PathVariable("id") Long id, Patient patient);
+
+    @PostMapping("/patient/add")
+    Patient addPatient(Patient patient);
 }
