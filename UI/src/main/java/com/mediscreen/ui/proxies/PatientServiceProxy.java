@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import java.util.List;
 
 //@FeignClient(name="mediscreenPatientService", url="http://localhost:8080")
-@FeignClient(value="PatientServiceProxy", url="http://localhost:8080")
+@FeignClient(value="Patient-service", url="localhost:8080")
 public interface PatientServiceProxy {
 
     @GetMapping("/patient/")

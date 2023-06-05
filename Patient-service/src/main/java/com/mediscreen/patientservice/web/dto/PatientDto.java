@@ -1,4 +1,4 @@
-package com.mediscreen.patientservice.dto;
+package com.mediscreen.patientservice.web.dto;
 
 import com.mediscreen.patientservice.model.Patient;
 import lombok.Getter;

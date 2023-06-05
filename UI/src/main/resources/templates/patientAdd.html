@@ -9,12 +9,12 @@
 <body>
 <div class="container">
   <br>
-  <div class="row text-danger" th:if="${Error}">
-    <br>
-    <p th:text="${Error}"></p>
-  </div>
   <h3> MEDISCREEN - Add new patient</h3>
   </br>
+  <div class="row text-danger" th:if="${Error}">
+    <p th:text="${Error}"></p>
+    <br>
+  </div>
   <div class="row">
     <form action="#" th:action="@{/mediscreen/patient/validate}" th:object="${patient}" method="post" class="form-horizontal" style="width: 100%">
       <div class="form-group">

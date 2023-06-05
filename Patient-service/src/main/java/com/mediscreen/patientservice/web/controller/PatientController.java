@@ -1,16 +1,15 @@
-package com.mediscreen.patientservice.controller;
+package com.mediscreen.patientservice.web.controller;
 
-import com.jsoniter.output.JsonStream;
-import com.mediscreen.patientservice.exceptions.NoPatientException;
+import com.mediscreen.patientservice.web.exceptions.NoPatientException;
 import com.mediscreen.patientservice.model.Patient;
 import com.mediscreen.patientservice.service.PatientService;
-import com.mediscreen.patientservice.dto.PatientDto;
+import com.mediscreen.patientservice.web.dto.PatientDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @RestController
 @Slf4j
@@ -20,10 +19,6 @@ public class PatientController {
     @Autowired
     private PatientService patientService;
 
-    /**
-     * List of patients
-     * @return String
-     */
     @GetMapping("/")
     public List<PatientDto> getAllPatient() {
         log.info("Get all patients");
@@ -37,7 +32,7 @@ public class PatientController {
     }
 
     @PutMapping("/{id}")
-    public PatientDto updatePatient(@PathVariable("id") Long id, @RequestBody PatientDto patient) throws Exception {
+    public PatientDto updatePatient(@PathVariable("id") Long id, @RequestBody PatientDto patient) {
         log.info("Update patient by id : ", id);
         return patientService.updatePatient(id, patient);
     }

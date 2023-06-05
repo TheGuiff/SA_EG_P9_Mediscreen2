@@ -1,4 +1,4 @@
-package com.mediscreen.patientservice.exceptions;
+package com.mediscreen.patientservice.web.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class LocalDateConverterException extends RuntimeException {
     public LocalDateConverterException(String s) {
         super(s);
+    }
+
+    @Override
+    public Throwable fillInStackTrace() {
+        return null;
     }
 
 }
