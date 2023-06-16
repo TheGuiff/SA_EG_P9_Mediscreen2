@@ -69,13 +69,7 @@ public class PatientControllerTest {
     @Test
     public void getAllPatients() {
         when(patientService.getAllPatients()).thenReturn(patientDtoList);
-        assertEquals(listPatientsDto, patientController.getAllPatient());
+        assertEquals(listPatientsDto, JsonStream.serialize(patientController.getAllPatient()));
     }
-
-//    @Test
-//    public void getPatient() throws Exception {
-//        when(patientService.getPatient(isA(Long.class))).thenReturn(patientDto1);
-//        assertEquals(patientDtoJson, patientController.getPatient(1L));
-//    }
 
 }

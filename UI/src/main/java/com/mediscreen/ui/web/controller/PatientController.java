@@ -1,4 +1,4 @@
-package com.mediscreen.ui.controller;
+package com.mediscreen.ui.web.controller;
 
 import com.mediscreen.ui.model.Patient;
 import com.mediscreen.ui.proxies.PatientServiceProxy;
@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import com.mediscreen.ui.web.exception.ExceptionMessage;
 
 import java.util.List;
 
@@ -22,7 +23,6 @@ public class PatientController {
 
     @GetMapping("/")
     public String home (Model model) {
-        model.addAttribute("patientId", 1);
         return "home";
     }
 
@@ -34,13 +34,14 @@ public class PatientController {
     }
 
     @RequestMapping("/patient/")
-    public String addPatient(@RequestParam("id") Long id, Model model) {
+    public String updatePatient(@RequestParam("id") Long id, Model model) {
             try {
                 Patient patient = patientServiceProxy.getPatient(id);
                 model.addAttribute("patient", patient);
                 return "patient";
             } catch (Exception e) {
-                model.addAttribute("Error",errorMessage(e.getMessage()));
+                ExceptionMessage exceptionMessage = new ExceptionMessage(e.getMessage());
+                model.addAttribute("Error",exceptionMessage.getMessage());
                 List<Patient> patientList = patientServiceProxy.getAllPatient();
                 model.addAttribute("patients", patientList);
                 return "patientList";
@@ -48,14 +49,15 @@ public class PatientController {
     }
 
     @PostMapping("/patient/update/{id}")
-    public String updatePatient(@PathVariable("id") Long id, Patient patient, Model model) {
+    public String updatePatientValidate(@PathVariable("id") Long id, Patient patient, Model model) {
         try {
             patientServiceProxy.updatePatient(id, patient);
             List<Patient> patientList = patientServiceProxy.getAllPatient();
             model.addAttribute("patients", patientList);
             return "patientList";
         } catch (Exception e) {
-            model.addAttribute("Error",errorMessage(e.getMessage()));
+            ExceptionMessage exceptionMessage = new ExceptionMessage(e.getMessage());
+            model.addAttribute("Error",exceptionMessage.getMessage());
             return "patient";
         }
     }
@@ -74,15 +76,11 @@ public class PatientController {
             model.addAttribute("patients", patientList);
             return "patientList";
         } catch (Exception e) {
-            model.addAttribute("Error",errorMessage(e.getMessage()));
+            ExceptionMessage exceptionMessage = new ExceptionMessage(e.getMessage());
+            model.addAttribute("Error",exceptionMessage.getMessage());
             return "patientAdd";
         }
 
-    }
-
-    private String errorMessage (String message) {
-        List<String> stringList = List.of(message.split(","));
-        return stringList.get(stringList.size()-2).substring(10);
     }
 
 }

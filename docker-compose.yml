@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+
+  db_patient:
+    image: mysql:8
+    container_name: mysql
+    volumes:
+      - mysql_data_patient:/var/lib/mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASWORD: rootroot
+      MYSQL_DATABASE: mediscreenpatient
+
+  patient_service:
+    image: 'docker-patient-service'
+    build:
+      context: ./Patient-service
+    container_name: patientservice
+    depends_on:
+      db_patient:
+        condition: service_healthy
+    ports:
+      - 8080:8080
+    links:
+      - db_patient:patient_service
+    restart: on-failure
+    networks:
+      - mediscreen
+#    environment:
+#      - 'spring.datasource.url=jdbc:mysql://localhost:3306/mediscreenpatient?serverTimezone=UTC'
+#      - 'spring.datasource.username=root'
+#      - 'spring.datasource.password=rootroot'
+#      - 'spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL8Dialect'
+
+  ui:
+    image: 'docker-ui'
+    build: ./UI
+    container_name: ui
+    ports:
+      - 9001:9001
+    networks:
+      - mediscreen
+
+networks:
+  mediscreen:
+
+volumes:
+  db_patient:
