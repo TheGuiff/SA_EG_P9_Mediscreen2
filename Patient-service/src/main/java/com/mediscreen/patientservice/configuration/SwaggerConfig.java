@@ -15,7 +15,7 @@ public class SwaggerConfig {
         public Docket api() {
             return new Docket(DocumentationType.SWAGGER_2)
                     .select()
-                    .apis(RequestHandlerSelectors.basePackage("com.mediscreen.patientservice.controller"))
+                    .apis(RequestHandlerSelectors.basePackage("com.mediscreen.patientservice.web.controller"))
                     .paths(PathSelectors.any())
                     .build();
         }
