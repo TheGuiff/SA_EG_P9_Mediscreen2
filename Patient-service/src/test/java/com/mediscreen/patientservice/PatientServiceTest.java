@@ -50,12 +50,6 @@ public class PatientServiceTest {
         id2 = patient2.getPatientId();
     }
 
-//    @Test
-//    public void getPatientOk() {
-//        PatientDto patientDto = patientService.getPatient(id1);
-//        assertEquals("ok1", patientDto.getLastname());
-//    }
-
     @Test
     public void getAllPatientOk() {
         List<PatientDto> patientDtoList = patientService.getAllPatients();
