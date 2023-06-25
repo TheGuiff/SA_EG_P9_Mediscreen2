@@ -11,10 +11,12 @@
     <br>
     <h3> MEDISCREEN - Patient by id <span th:text="${patient.patientId}"></span></h3>
     <br>
+
     <div class="row text-danger" th:if="${Error}">
       <p th:text="${Error}"></p>
       <br>
     </div>
+
     <div class="row">
       <form action="#" th:action="@{/mediscreen/patient/update/{id}(id=${patient.patientId})}" th:object="${patient}" method="post" class="form-horizontal" style="width: 100%">
         <div class="form-group">
@@ -68,6 +70,40 @@
         </div>
       </form>
     </div>
+
+    <br>
+
+    <div class="row">
+
+      <div class="row">
+        <form action="#" th:action="@{/mediscreen/patient/addNote/?{id}(id=${patient.patientId})}" th:object="${patient}" method="get" class="form-horizontal" style="width: 100%">
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="hidden" th:field="*{patientId}">
+              <input class="btn btn-primary btn-sm" type="submit" value="Add note to patient">
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th>Note</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="note : ${notes}">
+          <td th:text="${note.content}"></td>
+          <td style="width: 15%" class="text-center">
+            <a th:href="@{/mediscreen/patient/updateNote/?id={id} (id=${note.id})}">Edit</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 </body>
 </html></html>

@@ -1,6 +1,8 @@
 package com.mediscreen.ui.web.controller;
 
+import com.mediscreen.ui.model.Note;
 import com.mediscreen.ui.model.Patient;
+import com.mediscreen.ui.proxies.NoteServiceProxy;
 import com.mediscreen.ui.proxies.PatientServiceProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,8 +19,12 @@ public class PatientController {
     @Autowired
     private final PatientServiceProxy patientServiceProxy;
 
-    public PatientController(PatientServiceProxy patientServiceProxy) {
+    @Autowired
+    private final NoteServiceProxy noteServiceProxy;
+
+    public PatientController(PatientServiceProxy patientServiceProxy, NoteServiceProxy noteServiceProxy) {
         this.patientServiceProxy = patientServiceProxy;
+        this.noteServiceProxy = noteServiceProxy;
     }
 
     @GetMapping("/")
@@ -38,6 +44,9 @@ public class PatientController {
             try {
                 Patient patient = patientServiceProxy.getPatient(id);
                 model.addAttribute("patient", patient);
+                List<Note> notes = noteServiceProxy.listNotesByPatientId(Long.toString(id));
+                model.addAttribute("notes", notes);
+                model.addAttribute("id", id);
                 return "patient";
             } catch (Exception e) {
                 ExceptionMessage exceptionMessage = new ExceptionMessage(e.getMessage());
@@ -79,6 +88,58 @@ public class PatientController {
             ExceptionMessage exceptionMessage = new ExceptionMessage(e.getMessage());
             model.addAttribute("Error",exceptionMessage.getMessage());
             return "patientAdd";
+        }
+
+    }
+
+    @GetMapping("/patient/addNote/")
+    public String addNote(Model model, @RequestParam("patientId") Long patientId) {
+        try {
+            Note note = new Note();
+            note.setPatientId(Long.toString(patientId));
+            model.addAttribute("note", note);
+            Patient patient = patientServiceProxy.getPatient(patientId);
+            model.addAttribute("patient", patient);
+            model.addAttribute("titre", "New note for patient ");
+            return "patientAddNote";
+        } catch (Exception e) {
+            ExceptionMessage exceptionMessage = new ExceptionMessage(e.getMessage());
+            model.addAttribute("Error",exceptionMessage.getMessage());
+            return "patientList";
+        }
+    }
+
+    @RequestMapping("/patient/updateNote/")
+    public String updateNote(@RequestParam("id") String id, Model model) {
+        try {
+            Note note = noteServiceProxy.noteById(id);
+            model.addAttribute("note", note);
+            Patient patient = patientServiceProxy.getPatient(Long.valueOf(note.getPatientId()));
+            model.addAttribute("patient", patient);
+            model.addAttribute("titre", "Update note for patient ");
+            return "patientAddNote";
+        } catch (Exception e) {
+            ExceptionMessage exceptionMessage = new ExceptionMessage(e.getMessage());
+            model.addAttribute("Error",exceptionMessage.getMessage());
+            List<Patient> patientList = patientServiceProxy.getAllPatient();
+            model.addAttribute("patients", patientList);
+            return "patientList";
+        }
+    }
+
+    @PostMapping("/patient/validateNote")
+    public String validateNote(Note note, Model model) {
+        try {
+            Note noteAdded = noteServiceProxy.addNote(note);
+            List<Note> notes = noteServiceProxy.listNotesByPatientId(note.getPatientId());
+            model.addAttribute("notes", notes);
+            Patient patient = patientServiceProxy.getPatient(Long.valueOf(note.getPatientId()));
+            model.addAttribute("patient", patient);
+            return "patient";
+        } catch (Exception e) {
+            ExceptionMessage exceptionMessage = new ExceptionMessage(e.getMessage());
+            model.addAttribute("Error",exceptionMessage.getMessage());
+            return "patientAddNote";
         }
 
     }

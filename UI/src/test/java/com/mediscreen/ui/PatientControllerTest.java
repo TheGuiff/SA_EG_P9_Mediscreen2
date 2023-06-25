@@ -1,6 +1,8 @@
 package com.mediscreen.ui;
 
+import com.mediscreen.ui.model.Note;
 import com.mediscreen.ui.model.Patient;
+import com.mediscreen.ui.proxies.NoteServiceProxy;
 import com.mediscreen.ui.proxies.PatientServiceProxy;
 import com.mediscreen.ui.web.controller.PatientController;
 import feign.FeignException;
@@ -13,11 +15,10 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.ui.Model;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import static org.hamcrest.Matchers.isA;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 @ActiveProfiles("test")
@@ -29,12 +30,19 @@ public class PatientControllerTest {
     PatientServiceProxy patientServiceProxy;
 
     @MockBean
+    NoteServiceProxy noteServiceProxy;
+
+    @MockBean
     private Model model;
 
     @Autowired
     PatientController patientController;
 
     private final Patient patientTest = new Patient();
+
+    private final Note noteTest = new Note();
+
+    private final List<Note> notesTest = new ArrayList<>();
 
     @Test
     public void homeTest() {
@@ -95,5 +103,66 @@ public class PatientControllerTest {
         when(patientServiceProxy.addPatient(patientTest)).thenThrow(FeignException.BadRequest.class);
         String result = patientController.addPatientValidate(patientTest, model);
         assertEquals("patientAdd", result);
+    }
+
+    @Test
+    public void addNoteTestOk() {
+        when(patientServiceProxy.getPatient(any())).thenReturn(patientTest);
+        String result = patientController.addNote(model, 1L);
+        assertEquals("patientAddNote", result);
+    }
+
+    @Test
+    public void addNoteTestKo() {
+        when(patientServiceProxy.getPatient(any())).thenThrow(FeignException.BadRequest.class);
+        String result = patientController.addNote(model, 1L);
+        assertEquals("patientList", result);
+    }
+
+    @Test
+    public void updateNoteTestOk() {
+        when(patientServiceProxy.getPatient(any())).thenReturn(patientTest);
+        when(noteServiceProxy.noteById(any())).thenReturn(noteTest);
+        noteTest.setPatientId("1");
+        String result = patientController.updateNote("",model);
+        assertEquals("patientAddNote", result);
+    }
+
+    @Test
+    public void updateNoteTestKo1() {
+        when(patientServiceProxy.getPatient(1L)).thenThrow(FeignException.BadRequest.class);
+        when(noteServiceProxy.noteById(any())).thenReturn(noteTest);
+        noteTest.setPatientId("1");
+        String result = patientController.updateNote("",model);
+        assertEquals("patientList", result);
+    }
+
+    @Test
+    public void updateNoteTestKo2() {
+        when(noteServiceProxy.noteById(any())).thenThrow(FeignException.BadRequest.class);
+        when(patientServiceProxy.getPatient(1L)).thenReturn(patientTest);
+        noteTest.setPatientId("1");
+        String result = patientController.updateNote("",model);
+        assertEquals("patientList", result);
+    }
+
+    @Test
+    public void validateNoteTestOk() {
+        when(patientServiceProxy.getPatient(any())).thenReturn(patientTest);
+        when(noteServiceProxy.addNote(any())).thenReturn(noteTest);
+        when(noteServiceProxy.listNotesByPatientId(any())).thenReturn(notesTest);
+        noteTest.setPatientId("1");
+        String result = patientController.validateNote(noteTest, model);
+        assertEquals("patient", result);
+    }
+
+    @Test
+    public void validateNoteTestKo1() {
+        when(patientServiceProxy.getPatient(1L)).thenThrow(FeignException.BadRequest.class);
+        when(noteServiceProxy.addNote(any())).thenReturn(noteTest);
+        when(noteServiceProxy.listNotesByPatientId(any())).thenReturn(notesTest);
+        noteTest.setPatientId("1");
+        String result = patientController.validateNote(noteTest, model);
+        assertEquals("patientAddNote", result);
     }
 }

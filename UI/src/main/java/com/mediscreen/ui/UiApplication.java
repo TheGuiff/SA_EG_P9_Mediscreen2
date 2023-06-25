@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @EnableFeignClients
-//@ImportAutoConfiguration({FeignAutoConfiguration.class})
 public class UiApplication {
 
 	public static void main(String[] args) {
