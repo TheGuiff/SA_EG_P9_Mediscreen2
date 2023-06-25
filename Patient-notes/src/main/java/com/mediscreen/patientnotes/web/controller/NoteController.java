@@ -1,4 +1,4 @@
-package com.mediscreen.patientnotes.web;
+package com.mediscreen.patientnotes.web.controller;
 
 import com.mediscreen.patientnotes.model.Note;
 import com.mediscreen.patientnotes.service.NoteService;
@@ -27,6 +27,12 @@ public class NoteController {
     public List<Note> listNotesByPatientId (@RequestParam("patientId") String patientId) {
         log.info("Get notes for patient by id {}", patientId);
         return noteService.listNotesByPatientId(patientId);
+    }
+
+    @GetMapping("/byId")
+    public Note notesById (@RequestParam("id") String id) {
+        log.info("Get notes by id {}", id);
+        return noteService.noteById(id);
     }
 
     @PostMapping("/add")
