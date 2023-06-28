@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/User-interface/pom.xml" />
         <option value="$PROJECT_DIR$/UI/pom.xml" />
         <option value="$PROJECT_DIR$/Patient-notes/pom.xml" />
+        <option value="$PROJECT_DIR$/Patient_report/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
