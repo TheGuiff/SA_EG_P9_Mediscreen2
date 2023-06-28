@@ -7,8 +7,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Patient_report" />
         <module name="Patient-notes" />
+        <module name="Patient-report" />
         <module name="UI" />
         <module name="Patient-service" />
       </profile>
@@ -20,8 +20,8 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Patient-notes" options="-parameters" />
+      <module name="Patient-report" options="-parameters" />
       <module name="Patient-service" options="-parameters" />
-      <module name="Patient_report" options="-parameters" />
       <module name="UI" options="-parameters" />
       <module name="User-interface" options="-parameters" />
     </option>

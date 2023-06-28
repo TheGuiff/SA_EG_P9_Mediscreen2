@@ -18,6 +18,10 @@
     </div>
 
     <div class="row">
+      <p><b>Diabet risk level : </b><span th:text="${report}"></span></p>
+    </div>
+
+    <div class="row">
       <form action="#" th:action="@{/mediscreen/patient/update/{id}(id=${patient.patientId})}" th:object="${patient}" method="post" class="form-horizontal" style="width: 100%">
         <div class="form-group">
           <label for="firstname" class="col-sm-2 control-label">Firstname</label>
@@ -71,6 +75,8 @@
       </form>
     </div>
 
+    <br>
+    <h4>NOTES</h4>
     <br>
 
     <div class="row">

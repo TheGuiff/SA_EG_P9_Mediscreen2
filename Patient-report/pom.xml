@@ -11,7 +11,7 @@
 	</parent>
 
 	<groupId>com.mediscreen</groupId>
-	<artifactId>Patient_report</artifactId>
+	<artifactId>Patient-report</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Patient_report</name>
 	<description>Patient_report</description>

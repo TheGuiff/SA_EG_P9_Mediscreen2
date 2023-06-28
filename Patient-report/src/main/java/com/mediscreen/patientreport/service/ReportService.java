@@ -1,7 +1,7 @@
-package com.mediscreen.patient_report.service;
+package com.mediscreen.patientreport.service;
 
-import com.mediscreen.patient_report.repository.Declencheurs;
-import com.mediscreen.patient_report.model.PatientAndNotes;
+import com.mediscreen.patientreport.repository.Declencheurs;
+import com.mediscreen.patientreport.model.PatientAndNotes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

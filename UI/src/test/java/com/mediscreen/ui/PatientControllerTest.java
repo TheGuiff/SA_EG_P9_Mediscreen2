@@ -4,6 +4,7 @@ import com.mediscreen.ui.model.Note;
 import com.mediscreen.ui.model.Patient;
 import com.mediscreen.ui.proxies.NoteServiceProxy;
 import com.mediscreen.ui.proxies.PatientServiceProxy;
+import com.mediscreen.ui.proxies.ReportServiceProxy;
 import com.mediscreen.ui.web.controller.PatientController;
 import feign.FeignException;
 import org.junit.jupiter.api.Test;
@@ -33,6 +34,9 @@ public class PatientControllerTest {
     NoteServiceProxy noteServiceProxy;
 
     @MockBean
+    ReportServiceProxy reportServiceProxy;
+
+    @MockBean
     private Model model;
 
     @Autowired
@@ -60,6 +64,8 @@ public class PatientControllerTest {
     @Test
     public void updatePatientTestOk() {
         when(patientServiceProxy.getPatient(any())).thenReturn(new Patient());
+        when(noteServiceProxy.listNotesByPatientId(any())).thenReturn(new ArrayList<>());
+        when(reportServiceProxy.report(any())).thenReturn("None");
         String result = patientController.updatePatient(1L, model);
         assertEquals("patient", result);
     }
@@ -151,6 +157,7 @@ public class PatientControllerTest {
         when(patientServiceProxy.getPatient(any())).thenReturn(patientTest);
         when(noteServiceProxy.addNote(any())).thenReturn(noteTest);
         when(noteServiceProxy.listNotesByPatientId(any())).thenReturn(notesTest);
+        when(reportServiceProxy.report(any())).thenReturn("None");
         noteTest.setPatientId("1");
         String result = patientController.validateNote(noteTest, model);
         assertEquals("patient", result);

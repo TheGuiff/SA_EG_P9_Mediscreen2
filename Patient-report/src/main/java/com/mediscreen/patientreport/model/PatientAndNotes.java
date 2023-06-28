@@ -1,4 +1,4 @@
-package com.mediscreen.patient_report.model;
+package com.mediscreen.patientreport.model;
 
 import lombok.Getter;
 import lombok.Setter;
