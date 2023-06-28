@@ -2,8 +2,10 @@ package com.mediscreen.ui.web.controller;
 
 import com.mediscreen.ui.model.Note;
 import com.mediscreen.ui.model.Patient;
+import com.mediscreen.ui.model.PatientAndNotes;
 import com.mediscreen.ui.proxies.NoteServiceProxy;
 import com.mediscreen.ui.proxies.PatientServiceProxy;
+import com.mediscreen.ui.proxies.ReportServiceProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,9 +24,13 @@ public class PatientController {
     @Autowired
     private final NoteServiceProxy noteServiceProxy;
 
-    public PatientController(PatientServiceProxy patientServiceProxy, NoteServiceProxy noteServiceProxy) {
+    @Autowired
+    private final ReportServiceProxy reportServiceProxy;
+
+    public PatientController(PatientServiceProxy patientServiceProxy, NoteServiceProxy noteServiceProxy, ReportServiceProxy reportServiceProxy) {
         this.patientServiceProxy = patientServiceProxy;
         this.noteServiceProxy = noteServiceProxy;
+        this.reportServiceProxy = reportServiceProxy;
     }
 
     @GetMapping("/")
@@ -45,8 +51,11 @@ public class PatientController {
                 Patient patient = patientServiceProxy.getPatient(id);
                 model.addAttribute("patient", patient);
                 List<Note> notes = noteServiceProxy.listNotesByPatientId(Long.toString(id));
+                PatientAndNotes patientAndNotes = new PatientAndNotes(patient, notes);
+                String report = reportServiceProxy.report(patientAndNotes);
                 model.addAttribute("notes", notes);
                 model.addAttribute("id", id);
+                model.addAttribute("report", report);
                 return "patient";
             } catch (Exception e) {
                 ExceptionMessage exceptionMessage = new ExceptionMessage(e.getMessage());
@@ -130,11 +139,15 @@ public class PatientController {
     @PostMapping("/patient/validateNote")
     public String validateNote(Note note, Model model) {
         try {
+            if (note.getId()==""){note.setId(null);}
             Note noteAdded = noteServiceProxy.addNote(note);
             List<Note> notes = noteServiceProxy.listNotesByPatientId(note.getPatientId());
             model.addAttribute("notes", notes);
             Patient patient = patientServiceProxy.getPatient(Long.valueOf(note.getPatientId()));
             model.addAttribute("patient", patient);
+            PatientAndNotes patientAndNotes = new PatientAndNotes(patient, notes);
+            String report = reportServiceProxy.report(patientAndNotes);
+            model.addAttribute("report", report);
             return "patient";
         } catch (Exception e) {
             ExceptionMessage exceptionMessage = new ExceptionMessage(e.getMessage());

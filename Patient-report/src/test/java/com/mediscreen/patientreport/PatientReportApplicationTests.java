@@ -1,4 +1,4 @@
-package com.mediscreen.patient_report;
+package com.mediscreen.patientreport;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

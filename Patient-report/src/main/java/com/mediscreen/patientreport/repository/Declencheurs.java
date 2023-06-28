@@ -1,8 +1,6 @@
-package com.mediscreen.patient_report.repository;
+package com.mediscreen.patientreport.repository;
 
 import lombok.Getter;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

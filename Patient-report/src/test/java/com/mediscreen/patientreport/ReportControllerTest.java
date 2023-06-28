@@ -1,8 +1,8 @@
-package com.mediscreen.patient_report;
+package com.mediscreen.patientreport;
 
-import com.mediscreen.patient_report.controller.ReportController;
-import com.mediscreen.patient_report.model.PatientAndNotes;
-import com.mediscreen.patient_report.service.ReportService;
+import com.mediscreen.patientreport.controller.ReportController;
+import com.mediscreen.patientreport.model.PatientAndNotes;
+import com.mediscreen.patientreport.service.ReportService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;

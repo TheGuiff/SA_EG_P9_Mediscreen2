@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a29a532f-31fd-4aed-9afe-d97e7bf02def" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../Patient-report/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Patient-report/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Patient-report/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Patient-report/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Patient-report/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Patient-report/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Patient-report/src/main/java/com/mediscreen/patientreport/PatientReportApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Patient-report/src/main/java/com/mediscreen/patientreport/configuration/SwaggerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Patient-report/src/main/java/com/mediscreen/patientreport/controller/ReportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Patient-report/src/main/java/com/mediscreen/patientreport/model/PatientAndNotes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Patient-report/src/main/java/com/mediscreen/patientreport/repository/Declencheurs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Patient-report/src/main/java/com/mediscreen/patientreport/service/ReportService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Patient-report/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Patient-report/src/test/java/com/mediscreen/patientreport/PatientReportApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Patient-report/src/test/java/com/mediscreen/patientreport/ReportControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Patient-report/src/test/java/com/mediscreen/patientreport/ReportServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/src/main/java/com/mediscreen/ui/model/PatientAndNotes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UI/src/main/java/com/mediscreen/ui/proxies/ReportServiceProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mediscreen/patient_report/PatientReportApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mediscreen/patient_report/configuration/SwaggerConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mediscreen/patient_report/controller/ReportController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mediscreen/patient_report/model/PatientAndNotes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mediscreen/patient_report/repository/Declencheurs.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mediscreen/patient_report/service/ReportService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/mediscreen/patient_report/PatientReportApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/mediscreen/patient_report/ReportControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/mediscreen/patient_report/ReportServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UI/src/main/java/com/mediscreen/ui/web/controller/PatientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UI/src/main/java/com/mediscreen/ui/web/controller/PatientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UI/src/main/resources/templates/patient.html" beforeDir="false" afterPath="$PROJECT_DIR$/../UI/src/main/resources/templates/patient.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2RkGdelE4odLTIO9H6uMhO9Xkc5" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "spring.configuration.checksum": "802aa738c6785feda9b01c5808ec9f91",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="PatientReportApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Patient_report" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.mediscreen.patient_report.PatientReportApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a29a532f-31fd-4aed-9afe-d97e7bf02def" name="Changes" comment="" />
+      <created>1687786757185</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1687786757185</updated>
+      <workItem from="1687786758185" duration="361000" />
+      <workItem from="1687926638039" duration="599000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
