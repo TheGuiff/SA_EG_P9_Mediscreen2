@@ -16,7 +16,6 @@ public class Note {
     private String id;
 
     @Field(value="patientId")
-//    @Indexed
     private String patientId;
 
     @Field(value = "content")

@@ -45,7 +45,6 @@ public class NoteController {
     public Note updateNote(@RequestParam("id") String id,
                            @RequestBody Note noteToUpdate) throws NoNoteException {
         Note noteUpdated = noteService.noteById(id);
-        //noteUpdated.setPatientId(noteToUpdate.getPatientId());
         noteUpdated.setContent(noteToUpdate.getContent());
         return noteService.addNote(noteUpdated);
     }
