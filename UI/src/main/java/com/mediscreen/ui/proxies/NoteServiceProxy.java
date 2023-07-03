@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(value="Patient-notes", url="localhost:8082")
+@FeignClient(value="Patient-notes", url="${clients.patientnotesurl}")
 public interface NoteServiceProxy {
 
     @GetMapping("/notes/all/")

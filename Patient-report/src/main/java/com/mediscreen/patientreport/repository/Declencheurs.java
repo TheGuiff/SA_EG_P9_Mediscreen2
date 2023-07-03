@@ -25,6 +25,17 @@ public class Declencheurs {
         this.declencheurs.add("Rechute");
         this.declencheurs.add("Réaction");
         this.declencheurs.add("Anticorps");
+        this.declencheurs.add("hémoglobine A1C");
+        this.declencheurs.add("microalbumine");
+        this.declencheurs.add("taille");
+        this.declencheurs.add("poids");
+        this.declencheurs.add("fumeur");
+        this.declencheurs.add("anormal");
+        this.declencheurs.add("cholestérol");
+        this.declencheurs.add("vertige");
+        this.declencheurs.add("rechute");
+        this.declencheurs.add("réaction");
+        this.declencheurs.add("anticorps");
     }
 
 }
