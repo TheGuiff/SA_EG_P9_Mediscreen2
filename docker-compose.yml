@@ -2,42 +2,58 @@ version: '3'
 
 services:
 
-  db_patient:
-    image: mysql:8
-    container_name: db_patient
-    volumes:
-      - db_patient:/db_patient/mysql
+  dbpatient:
+    container_name: dbpatient
+    build: /Patient-service/Database/
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: rootroot
-      MYSQL_DATABASE: mediscreenpatient
-
-  patient_service:
-    image: 'docker-patient-service'
-    build:
-      context: ./Patient-service
-    container_name: patientservice
-    depends_on:
-      - db_patient
     ports:
-      - 8080:8080
-    links:
-      - db_patient:patient_service
-    restart: on-failure
-    networks:
-      - mediscreen
+      - "21001:3306"
+
+  dbnotes:
+    container_name: dbnotes
+    build: /Patient-notes/Database/
+    restart: always
+    ports:
+      - "21002:27017"
+
+  patientservice:
+    build: /Patient-service/
+    container_name: patientservice
+    environment:
+      spring.datasource.url: "jdbc:mysql://dbpatient:3306/mediscreenpatient"
+    depends_on:
+      - dbpatient
+    restart: always
+    ports:
+      - "21003:8080"
+
+  patientnotes:
+    build: /Patient-notes/
+    container_name: patientnotes
+    environment:
+      spring.data.mongodb.host: "dbnotes"
+    depends_on:
+      - dbnotes
+    restart: always
+    ports:
+      - "21004:8082"
+
+  patientreport:
+    build: /Patient-report/
+    container_name: patientreport
+    ports:
+      - "21005:8083"
 
   ui:
-    image: 'docker-ui'
-    build: ./UI
+    build: /UI
     container_name: ui
+    depends_on:
+      - patientservice
+      - patientnotes
+      - patientreport
     ports:
-      - 9001:9001
-    networks:
-      - mediscreen
-
-networks:
-  mediscreen:
-
-volumes:
-  db_patient:
+      - "21006:9001"
+    environment:
+      clients.patientserviceurl: "http://patientservice:8080"
+      clients.patientnotesurl: "http://patientnotes:8082"
+      clients.patientreporturl: "http://patientreport:8083"

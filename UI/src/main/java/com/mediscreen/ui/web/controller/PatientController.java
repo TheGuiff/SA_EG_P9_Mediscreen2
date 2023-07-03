@@ -76,6 +76,12 @@ public class PatientController {
         } catch (Exception e) {
             ExceptionMessage exceptionMessage = new ExceptionMessage(e.getMessage());
             model.addAttribute("Error",exceptionMessage.getMessage());
+            List<Note> notes = noteServiceProxy.listNotesByPatientId(Long.toString(id));
+            PatientAndNotes patientAndNotes = new PatientAndNotes(patient, notes);
+            String report = reportServiceProxy.report(patientAndNotes);
+            model.addAttribute("notes", notes);
+            model.addAttribute("id", id);
+            model.addAttribute("report", report);
             return "patient";
         }
     }
